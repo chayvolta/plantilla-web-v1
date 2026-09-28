@@ -1,0 +1,9 @@
+import type { Metadata } from 'next';
+import { siteConfig } from '@/config/site';
+import { isSafePublicUrl } from '@/lib/format';
+import { ArrowUpRight } from '@/components/ui/icons';
+export const metadata: Metadata = { title: 'Contacto', description: 'Información de contacto y canales de conversación.' };
+export default function ContactPage() {
+  const links = Object.entries(siteConfig.social).filter(([, link]) => isSafePublicUrl(link));
+  return <section className="container-wide section-gap"><p className="eyebrow mb-6 text-muted">Contacto / 04</p><h1 className="display max-w-6xl text-[clamp(3.7rem,10vw,10rem)]">{siteConfig.copy.contactTitle}</h1><div className="mt-16 grid gap-10 border-t border-[#dcded8] pt-12 md:grid-cols-[1fr_1.5fr]"><div><p className="eyebrow mb-6 text-muted">¿Por dónde comenzamos?</p><p className="max-w-sm text-lg leading-8 text-muted">{siteConfig.availability}. Esta versión no recoge información en un formulario: el botón abre tu cliente de correo.</p></div><div><p className="eyebrow mb-5 text-muted">Escríbenos</p><a href={`mailto:${siteConfig.email}`} className="group inline-flex max-w-full items-center gap-3 break-all text-[clamp(1.8rem,4.2vw,4rem)] font-bold tracking-[-.06em] underline decoration-1 underline-offset-[12px]">{siteConfig.email}<ArrowUpRight className="h-7 w-7 shrink-0" /></a><div className="mt-12 border-t border-[#dcded8] pt-8"><p className="eyebrow mb-5 text-muted">Ubicación</p><p className="text-lg">{siteConfig.location}</p></div>{links.length > 0 && <div className="mt-8 border-t border-[#dcded8] pt-8"><p className="eyebrow mb-5 text-muted">Redes</p><div className="flex flex-wrap gap-6">{links.map(([network, url]) => <a key={network} href={url} target="_blank" rel="noreferrer" className="capitalize underline underline-offset-4">{network}</a>)}</div></div>}</div></div></section>;
+}

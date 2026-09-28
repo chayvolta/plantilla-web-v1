@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function NotFound() { return <section className="container-wide section-gap min-h-[60vh]"><p className="eyebrow text-muted">Error 404</p><h1 className="display my-8 text-[clamp(3.7rem,9vw,8rem)]">Esta página aún no existe.</h1><p className="my-8 text-lg text-muted">Regresa al inicio para seguir explorando.</p><Link className="button-primary" href="/">Volver al inicio →</Link></section>; }
